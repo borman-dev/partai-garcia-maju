@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partai Garcia Maju (GARMA) - Indonesia Maju, Adil, dan Sejahtera</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        garcia: {
+                            navy: '#0A192F',
+                            navyLight: '#172A45',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            red: '#B22222',
+                            redHover: '#8B0000',
+                            slate: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF099 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #B38F28 100%);
+        }
+        .red-gradient-bg {
+            background: linear-gradient(135deg, #B22222 0%, #8B0000 100%);
+        }
+        .glass-card {
+            background: rgba(23, 42, 69, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A192F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B38F28;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #kta-card, #kta-card * {
+                visibility: visible;
+            }
+            #kta-card {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-garcia-navy text-gray-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-24 right-5 z-50 flex flex-col gap-3 max-w-sm pointer-events-none"></div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-garcia-navy/95 border-b border-garcia-gold/30 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand Name -->
+                <a href="#beranda" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-full gold-gradient-bg flex items-center justify-center shadow-lg shadow-garcia-gold/20 group-hover:scale-105 transition-transform duration-300 border-2 border-amber-200">
+                        <i class="fa-solid fa-eagle text-garcia-navy text-2xl font-black"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xl font-extrabold font-serif tracking-wider gold-gradient-text uppercase">Garcia Maju</span>
+                        <span class="block text-[10px] text-red-400 font-bold tracking-widest uppercase -mt-1">PARTAI GARMA INDONESIA</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden xl:flex items-center space-x-5">
+                    <a href="#beranda" class="text-xs uppercase font-bold tracking-wider hover:text-garcia-gold transition-colors py-2 border-b-2 border-transparent hover:border-garcia-gold">Beranda</a>
+                    <a href="#profil" class="text-xs uppercase font-bold tracking-wider hover:text-garcia-gold transition-colors py-2 border-b-2 border-transparent hover:border-garcia-gold">Profil & Ketum</a>
+                    <a href="#visimisi" class="text-xs uppercase font-bold tracking-wider hover:text-garcia-gold transition-colors py-2 border-b-2 border-transparent hover:border-garcia-gold">Visi & Misi</a>
+                    <a href="#pengurus" class="text-xs uppercase font-bold tracking-wider hover:text-garcia-gold transition-colors py-2 border-b-2 border-transparent hover:border-garcia-gold">Pengurus</a>
+                    <a href="#kta" class="text-xs uppercase font-bold tracking-wider hover:text-garcia-gold transition-colors py-2 border-b-2 border-transparent hover:border-garcia-gold">KTA Digital</a>
+                    <a href="#berita" class="text-xs uppercase font-bold tracking-wider hover:text-garcia-gold transition-colors py-2 border-b-2 border-transparent hover:border-garcia-gold">Berita</a>
+                    <a href="#aspirasi" class="text-xs uppercase font-bold tracking-wider hover:text-garcia-gold transition-colors py-2 border-b-2 border-transparent hover:border-garcia-gold">Aspirasi</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="#kta" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider red-gradient-bg text-white hover:opacity-90 shadow-lg shadow-garcia-red/30 transition-all border border-red-400/30">
+                        <i class="fa-solid fa-id-card mr-1.5"></i> Daftar KTA
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <div class="flex xl:hidden">
+                    <button id="mobile-menu-btn" type="button" class="text-gray-300 hover:text-white focus:outline-none p-2" aria-label="Toggle menu">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-garcia-navyLight border-b border-garcia-gold/20 px-4 pt-2 pb-6 space-y-2">
+            <a href="#beranda" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-garcia-navy hover:text-garcia-gold">Beranda</a>
+            <a href="#profil" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-garcia-navy hover:text-garcia-gold">Profil & Ketum</a>
+            <a href="#visimisi" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-garcia-navy hover:text-garcia-gold">Visi & Misi</a>
+            <a href="#pengurus" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-garcia-navy hover:text-garcia-gold">Struktur Pengurus</a>
+            <a href="#kta" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-garcia-navy hover:text-garcia-gold">KTA Digital Realtime</a>
+            <a href="#berita" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-garcia-navy hover:text-garcia-gold">Berita & Kegiatan</a>
+            <a href="#aspirasi" class="mobile-nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-garcia-navy hover:text-garcia-gold">Portal Aspirasi Rakyat</a>
+            <div class="pt-2">
+                <a href="#kta" class="mobile-nav-link block text-center w-full px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider red-gradient-bg text-white shadow-md">
+                    Gabung Partai Sekarang
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?q=80&w=1600&auto=format&fit=crop" alt="Partai Garcia Maju Banner" class="w-full h-full object-cover opacity-20 filter brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-garcia-navy via-garcia-navy/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-garcia-navy/95 via-transparent to-garcia-navy/95"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-garcia-gold/10 border border-garcia-gold/40 text-garcia-gold text-xs font-bold uppercase tracking-widest mb-6 animate-pulse">
+                <i class="fa-solid fa-star text-amber-400"></i> DPC & DPD SELURUH INDONESIA BERSATU
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold font-serif leading-tight tracking-tight mb-6">
+                <span class="text-white">PARTAI GARCIA MAJU</span><br>
+                <span class="gold-gradient-text">(GARMA)</span>
+            </h1>
+            
+            <p class="text-lg sm:text-2xl font-serif italic text-gray-200 max-w-3xl mx-auto mb-8 font-light">
+                "Bersama Rakyat Mewujudkan Indonesia Maju, Adil, dan Sejahtera"
+            </p>
+
+            <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Di bawah kepemimpinan <strong class="text-garcia-gold">Dr. Borman Garcia</strong>, Partai Garcia Maju hadir sebagai garda terdepan perjuangan keadilan, kemandirian ekonomi, dan integrasi teknologi untuk masa depan bangsa.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <a href="#kta" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-xs tracking-wider uppercase red-gradient-bg text-white shadow-xl shadow-garcia-red/30 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 border border-red-400/40">
+                    <i class="fa-solid fa-user-plus text-base"></i>
+                    <span>Bergabung Sekarang (Daftar KTA)</span>
+                </a>
+                <a href="#aspirasi" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-xs tracking-wider uppercase border-2 border-garcia-gold text-garcia-gold hover:bg-garcia-gold/10 transition-all duration-300 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-bullhorn text-base"></i>
+                    <span>Sampaikan Aspirasi</span>
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-garcia-gold/20 max-w-4xl mx-auto">
+                <div class="p-3 bg-garcia-navyLight/50 rounded-xl border border-white/5">
+                    <span class="block text-2xl md:text-3xl font-extrabold gold-gradient-text">2.5M+</span>
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Kader Terdaftar</span>
+                </div>
+                <div class="p-3 bg-garcia-navyLight/50 rounded-xl border border-white/5">
+                    <span class="block text-2xl md:text-3xl font-extrabold gold-gradient-text">38</span>
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Provinsi (DPD)</span>
+                </div>
+                <div class="p-3 bg-garcia-navyLight/50 rounded-xl border border-white/5">
+                    <span class="block text-2xl md:text-3xl font-extrabold gold-gradient-text">514</span>
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Kabupaten/Kota</span>
+                </div>
+                <div class="p-3 bg-garcia-navyLight/50 rounded-xl border border-white/5">
+                    <span class="block text-2xl md:text-3xl font-extrabold gold-gradient-text">100%</span>
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Dedikasi Untuk Rakyat</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sambutan Ketua Umum Section -->
+    <section id="profil" class="py-24 bg-garcia-navyLight relative border-t border-b border-garcia-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Foto Ketua Umum Profil -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="relative w-full max-w-sm rounded-3xl overflow-hidden p-2 gold-gradient-bg shadow-2xl border-4 border-amber-300/40">
+                        <div class="rounded-2xl overflow-hidden bg-garcia-navy relative aspect-[3/4]">
+                            <img src="watermarked_img_1688744384258948971.jpg" alt="Dr. Borman Garcia - Ketua Umum Partai Garcia Maju" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-garcia-navy via-transparent to-transparent opacity-80"></div>
+                            
+                            <div class="absolute bottom-4 left-4 right-4 text-center">
+                                <span class="bg-garcia-red text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-1 inline-block">Ketua Umum DPP</span>
+                                <h3 class="text-xl font-extrabold font-serif text-white">Dr. Borman Garcia</h3>
+                                <p class="text-xs text-garcia-gold font-medium">Partai Garcia Maju (GARMA)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pesan / Sambutan Ketua Umum -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 text-garcia-gold text-xs font-bold uppercase tracking-widest">
+                        <i class="fa-solid fa-quote-left"></i> Pesan Kepemimpinan
+                    </div>
+                    
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-serif text-white leading-tight">
+                        "Indonesia Tidak Boleh Berdiri Di Atas Ketimpangan, Saatnya Garcia Maju Memimpin Inovasi!"
+                    </h2>
+
+                    <div class="w-20 h-1.5 gold-gradient-bg rounded-full"></div>
+
+                    <div class="space-y-4 text-gray-300 text-sm leading-relaxed font-light">
+                        <p class="text-base text-gray-200">
+                            <strong>Salam Keadilan dan Persatuan Bangsa,</strong>
+                        </p>
+                        <p>
+                            Atas rahmat Tuhan Yang Maha Esa, Partai Garcia Maju (GARMA) hadir bukan sekadar sebagai wadah politik formal, melainkan sebagai gerakan moral dan aksi nyata untuk membebaskan rakyat dari ketimpangan ekonomi dan keterbelakangan teknologi.
+                        </p>
+                        <p>
+                            Di bawah kepemimpinan kami, Partai Garcia Maju berkomitmen penuh membangun fondasi kebangsaan yang bersih dari korupsi, transparan dalam tata kelola, serta menghadirkan program-program nyata yang langsung menyentuh dapur rakyat kecil.
+                        </p>
+                    </div>
+
+                    <!-- Quote Highlight Card -->
+                    <div class="p-5 rounded-2xl glass-card border border-garcia-gold/30 my-6">
+                        <p class="italic text-gray-200 text-sm leading-relaxed">
+                            "Masa depan Indonesia ada di tangan pemuda yang berani berinovasi dan pemimpin yang berdiri teguh tanpa kompromi terhadap keadilan."
+                        </p>
+                        <span class="block text-right text-xs font-bold text-garcia-gold mt-3 font-serif">— Dr. Borman Garcia</span>
+                    </div>
+
+                    <div class="pt-2 flex items-center gap-4">
+                        <a href="#visimisi" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider border border-garcia-gold text-garcia-gold hover:bg-garcia-gold hover:text-garcia-navy transition-all">
+                            Pelajari Visi & Misi <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi & Misi Section -->
+    <section id="visimisi" class="py-24 bg-garcia-navy relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-garcia-gold mb-2">Arah Perjuangan</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold font-serif text-white">Visi & Misi Utama</h3>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Visi Card Big Header -->
+            <div class="mb-12 p-8 rounded-3xl glass-card border-2 border-garcia-gold/40 text-center relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-garcia-gold/10 rounded-full blur-2xl"></div>
+                <span class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest red-gradient-bg text-white mb-4 inline-block shadow-md">Visi Utama GARMA</span>
+                <h4 class="text-2xl sm:text-3xl font-serif font-bold text-white max-w-4xl mx-auto leading-relaxed mt-2">
+                    "Terwujudnya Indonesia yang Berdaulat, Maju Berteknologi, Adil Secara Sosial, dan Berdaya Saing Global Pada Tahun 2045"
+                </h4>
+            </div>
+
+            <!-- Misi Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Misi 1 -->
+                <div class="p-6 rounded-2xl bg-garcia-navyLight border border-white/10 hover:border-garcia-gold transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl gold-gradient-bg text-garcia-navy flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h5 class="text-lg font-bold font-serif text-white mb-2 group-hover:text-garcia-gold transition-colors">1. Keadilan Hukum & Transparansi</h5>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Menjamin kepastian hukum yang tidak pandang bulu serta menerapkan transparansi total berbasis digital pada setiap instansi pemerintah.
+                    </p>
+                </div>
+
+                <!-- Misi 2 -->
+                <div class="p-6 rounded-2xl bg-garcia-navyLight border border-white/10 hover:border-garcia-gold transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl gold-gradient-bg text-garcia-navy flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h5 class="text-lg font-bold font-serif text-white mb-2 group-hover:text-garcia-gold transition-colors">2. Ekonomi Mandiri & Inovasi</h5>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Mendorong daya saing UMKM nasional melalui permodalan tanpa bunga serta pemanfaatan teknologi tepat guna untuk industri lokal.
+                    </p>
+                </div>
+
+                <!-- Misi 3 -->
+                <div class="p-6 rounded-2xl bg-garcia-navyLight border border-white/10 hover:border-garcia-gold transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl gold-gradient-bg text-garcia-navy flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h5 class="text-lg font-bold font-serif text-white mb-2 group-hover:text-garcia-gold transition-colors">3. Pendidikan & SDM Unggul</h5>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Menyediakan beasiswa pendidikan gratis hingga jenjang perguruan tinggi bagi seluruh anak bangsa berprestasi dan kurang mampu.
+                    </p>
+                </div>
+
+                <!-- Misi 4 -->
+                <div class="p-6 rounded-2xl bg-garcia-navyLight border border-white/10 hover:border-garcia-gold transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl gold-gradient-bg text-garcia-navy flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h5 class="text-lg font-bold font-serif text-white mb-2 group-hover:text-garcia-gold transition-colors">4. Layanan Kesehatan Gratis</h5>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Menjamin ketersediaan jaminan kesehatan universal tanpa diskriminasi dan penanganan gizi buruk secara masif di daerah 3T.
+                    </p>
+                </div>
+
+                <!-- Misi 5 -->
+                <div class="p-6 rounded-2xl bg-garcia-navyLight border border-white/10 hover:border-garcia-gold transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl gold-gradient-bg text-garcia-navy flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+                    <h5 class="text-lg font-bold font-serif text-white mb-2 group-hover:text-garcia-gold transition-colors">5. Kedaulatan Pangan & Tani</h5>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Memastikan ketersediaan pupuk terjangkau, memberikan kepastian harga jual hasil panen, dan modernisasi pertanian rakyat.
+                    </p>
+                </div>
+
+                <!-- Misi 6 -->
+                <div class="p-6 rounded-2xl bg-garcia-navyLight border border-white/10 hover:border-garcia-gold transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-xl gold-gradient-bg text-garcia-navy flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h5 class="text-lg font-bold font-serif text-white mb-2 group-hover:text-garcia-gold transition-colors">6. Kedaulatan Digital & Siber</h5>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Melindungi data pribadi warga negara serta membangun infrastruktur digital nasional yang aman, cepat, dan terjangkau.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struktur Pengurus Section -->
+    <section id="pengurus" class="py-24 bg-garcia-navyLight relative border-t border-b border-garcia-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-garcia-gold mb-2">Kepemimpinan Partai</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold font-serif text-white">Struktur Pengurus GARMA</h3>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex p-1.5 rounded-xl bg-garcia-navy border border-garcia-gold/30">
+                    <button onclick="filterPengurus('dpp')" id="tab-dpp" class="pengurus-tab active px-6 py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all gold-gradient-bg text-garcia-navy">
+                        DPP (Pusat)
+                    </button>
+                    <button onclick="filterPengurus('dpd')" id="tab-dpd" class="pengurus-tab px-6 py-2.5 rounded-lg text-xs md:text-sm font-bold text-gray-300 hover:text-white transition-all">
+                        DPD (Provinsi)
+                    </button>
+                    <button onclick="filterPengurus('dpc')" id="tab-dpc" class="pengurus-tab px-6 py-2.5 rounded-lg text-xs md:text-sm font-bold text-gray-300 hover:text-white transition-all">
+                        DPC (Kab/Kota)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pengurus Dynamic Grid -->
+            <div id="pengurus-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Content injected via Javascript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Generator KTA Digital Section -->
+    <section id="kta" class="py-24 bg-garcia-navy relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-garcia-gold mb-2">Keanggotaan Partai</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold font-serif text-white">Generator KTA Digital Realtime</h3>
+                <p class="text-gray-300 text-sm mt-3">Bergabunglah menjadi kader resmi Partai Garcia Maju dan cetak Kartu Tanda Anggota (KTA) secara langsung!</p>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <!-- Registration Form -->
+                <div class="lg:col-span-7 bg-garcia-navyLight p-6 md:p-8 rounded-3xl border border-garcia-gold/30 shadow-2xl">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-address-card text-garcia-gold"></i> Form Pendaftaran Kader Official
+                    </h4>
+
+                    <form id="form-kta" onsubmit="handleKtaSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Nama Lengkap (Sesuai KTP)</label>
+                            <input type="text" id="input-nama" required oninput="updateKtaPreview()" placeholder="Contoh: Budi Santoso" class="w-full bg-garcia-navy border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-garcia-gold">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">NIK (Nomor Induk Kependudukan)</label>
+                                <input type="text" id="input-nik" required maxlength="16" oninput="updateKtaPreview()" placeholder="3201010101000001" class="w-full bg-garcia-navy border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-garcia-gold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Provinsi Domisili</label>
+                                <select id="input-provinsi" required onchange="updateKtaPreview()" class="w-full bg-garcia-navy border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-garcia-gold">
+                                    <option value="DKI Jakarta">DKI Jakarta</option>
+                                    <option value="Jawa Barat">Jawa Barat</option>
+                                    <option value="Jawa Tengah">Jawa Tengah</option>
+                                    <option value="Jawa Timur">Jawa Timur</option>
+                                    <option value="Sumatera Utara">Sumatera Utara</option>
+                                    <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                                    <option value="Bali">Bali</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Nomor WhatsApp/HP</label>
+                                <input type="tel" id="input-hp" required placeholder="081234567890" class="w-full bg-garcia-navy border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-garcia-gold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Email</label>
+                                <input type="email" id="input-email" required placeholder="budi@example.com" class="w-full bg-garcia-navy border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-garcia-gold">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Foto Profil KTA</label>
+                            <input type="file" id="input-foto" accept="image/*" onchange="handleFotoUpload(event)" class="w-full bg-garcia-navy border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-garcia-gold file:text-garcia-navy hover:file:bg-garcia-goldLight">
+                        </div>
+
+                        <div class="pt-4 flex gap-3">
+                            <button type="submit" class="w-full py-4 rounded-xl text-xs font-bold uppercase tracking-wider red-gradient-bg text-white hover:opacity-90 shadow-lg shadow-garcia-red/30 transition-all flex items-center justify-center gap-2 border border-red-400/40">
+                                <i class="fa-solid fa-id-card"></i> Terbitkan KTA Digital
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Live KTA Preview Card -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-garcia-gold mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-eye text-amber-400"></i> Preview KTA Realtime
+                    </span>
+                    
+                    <!-- KTA Card Container -->
+                    <div id="kta-card" class="w-full max-w-md aspect-[1.586/1] rounded-2xl p-6 gold-gradient-bg shadow-2xl relative overflow-hidden flex flex-col justify-between text-garcia-navy border-2 border-amber-200">
+                        <!-- Card Header -->
+                        <div class="flex justify-between items-start z-10">
+                            <div class="flex items-center gap-2">
+                                <div class="w-10 h-10 rounded-full bg-garcia-navy flex items-center justify-center text-garcia-gold font-serif font-black text-xl border border-amber-300">
+                                    G
+                                </div>
+                                <div>
+                                    <h5 class="font-extrabold font-serif text-sm leading-tight text-garcia-navy uppercase">PARTAI GARCIA MAJU</h5>
+                                    <span class="text-[9px] font-bold tracking-widest uppercase block text-garcia-navy/80">Kartu Tanda Anggota (GARMA)</span>
+                                </div>
+                            </div>
+                            <span class="text-[9px] bg-garcia-navy text-garcia-gold px-2 py-0.5 rounded font-mono font-bold">OFFICIAL KTA</span>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="flex items-center gap-4 my-2 z-10">
+                            <div class="w-20 h-24 rounded-lg bg-garcia-navy/20 overflow-hidden border border-garcia-navy/30 flex items-center justify-center flex-shrink-0">
+                                <img id="kta-preview-foto" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Foto KTA" class="w-full h-full object-cover">
+                            </div>
+                            <div class="space-y-1 text-garcia-navy overflow-hidden">
+                                <div>
+                                    <span class="text-[8px] uppercase tracking-wider block text-garcia-navy/70">Nama Kader</span>
+                                    <p id="kta-preview-nama" class="text-sm font-extrabold truncate uppercase">BUDI SANTOSO</p>
+                                </div>
+                                <div>
+                                    <span class="text-[8px] uppercase tracking-wider block text-garcia-navy/70">ID Kader / NIK</span>
+                                    <p id="kta-preview-id" class="text-xs font-mono font-bold">GARMA-3201010101000001</p>
+                                </div>
+                                <div>
+                                    <span class="text-[8px] uppercase tracking-wider block text-garcia-navy/70">Wilayah DPD</span>
+                                    <p id="kta-preview-wilayah" class="text-xs font-bold">DKI JAKARTA</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="flex justify-between items-end text-[9px] pt-2 border-t border-garcia-navy/20 z-10">
+                            <div>
+                                <span class="block font-semibold">Tgl Terbit: <span id="kta-preview-tanggal">08/10/2026</span></span>
+                                <span class="block font-semibold">Status: <strong class="text-emerald-950 font-bold">AKTIF / RESMI</strong></span>
+                            </div>
+                            <div class="text-right">
+                                <i class="fa-solid fa-qrcode text-3xl text-garcia-navy"></i>
+                            </div>
+                        </div>
+
+                        <!-- Decorative Pattern Background -->
+                        <div class="absolute -right-12 -bottom-12 w-44 h-44 bg-garcia-navy/10 rounded-full blur-xl pointer-events-none"></div>
+                    </div>
+
+                    <!-- Print / Download Button -->
+                    <button onclick="printKtaCard()" class="mt-5 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-garcia-navyLight text-garcia-gold border border-garcia-gold/40 hover:bg-garcia-gold hover:text-garcia-navy transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-print"></i> Cetak / Unduh KTA
+                    </button>
+
+                    <p class="text-[11px] text-gray-400 mt-3 text-center max-w-xs">
+                        *KTA Digital ini merupakan bukti keanggotaan sah Partai Garcia Maju (GARMA).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portal Aspirasi Rakyat Section -->
+    <section id="aspirasi" class="py-24 bg-garcia-navyLight relative border-t border-b border-garcia-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-garcia-gold mb-2">Suara Rakyat Suara Tuhan</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold font-serif text-white">Portal Aspirasi Rakyat</h3>
+                <p class="text-gray-300 text-sm mt-2">Sampaikan keluhan, masukan, dan ide Anda secara langsung kepada jajaran pengurus GARMA.</p>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Form Aspirasi -->
+                <div class="lg:col-span-5 bg-garcia-navy p-6 rounded-3xl border border-garcia-gold/30">
+                    <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-garcia-gold"></i> Kirim Aspirasi Anda
+                    </h4>
+
+                    <form id="form-aspirasi" onsubmit="handleAspirasiSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Nama Pengirim</label>
+                            <input type="text" id="asp-nama" required placeholder="Nama Anda / Warga Masyakat" class="w-full bg-garcia-navyLight border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-garcia-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Kategori Aspirasi</label>
+                            <select id="asp-kategori" required class="w-full bg-garcia-navyLight border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-garcia-gold">
+                                <option value="Infrastruktur & Jalan">Infrastruktur & Jalan</option>
+                                <option value="Pendidikan & Sekolah">Pendidikan & Sekolah</option>
+                                <option value="Kesehatan & Pelayanan">Kesehatan & Pelayanan</option>
+                                <option value="Ekonomi & Pasar">Ekonomi & Pasar</option>
+                                <option value="Hukum & Keadilan">Hukum & Keadilan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Isi Aspirasi / Pesan</label>
+                            <textarea id="asp-pesan" required rows="4" placeholder="Tuliskan pesan atau usulan Anda..." class="w-full bg-garcia-navyLight border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-garcia-gold"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider gold-gradient-bg text-garcia-navy hover:opacity-90 transition-all">
+                            Kirim Aspirasi Sekarang
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Live Feed Aspirasi -->
+                <div class="lg:col-span-7">
+                    <h4 class="text-lg font-bold text-white mb-4 flex items-center justify-between">
+                        <span><i class="fa-solid fa-list-check text-garcia-gold mr-2"></i> Feed Aspirasi Terkini</span>
+                        <span class="text-xs text-gray-400 font-normal">Realtime & Transparan</span>
+                    </h4>
+
+                    <div id="aspirasi-list" class="space-y-4 max-h-[460px] overflow-y-auto pr-2">
+                        <!-- Dynamic via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Berita & Kegiatan Section -->
+    <section id="berita" class="py-24 bg-garcia-navy relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-garcia-gold mb-2">Kabar Utama</h2>
+                    <h3 class="text-3xl md:text-4xl font-extrabold font-serif text-white">Berita & Kegiatan GARMA</h3>
+                </div>
+                <!-- Search Box -->
+                <div class="mt-6 md:mt-0 relative">
+                    <input type="text" id="news-search" oninput="filterBerita()" placeholder="Cari berita..." class="w-full sm:w-64 bg-garcia-navyLight border border-garcia-gold/30 rounded-xl px-4 py-2 text-xs text-white placeholder-gray-400 focus:outline-none focus:border-garcia-gold">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-gray-400 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div id="berita-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Content generated via Javascript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-garcia-navy border-t border-garcia-gold/30 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full gold-gradient-bg flex items-center justify-center font-serif font-black text-garcia-navy text-lg border border-amber-300">
+                            G
+                        </div>
+                        <div>
+                            <span class="text-lg font-bold font-serif gold-gradient-text block">PARTAI GARCIA MAJU</span>
+                            <span class="text-[9px] text-red-400 font-bold tracking-widest uppercase block -mt-1">DPP PUSAT JAKARTA</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Di bawah kepemimpinan Ketum Dr. Borman Garcia, GARMA mengabdi untuk keadilan, kemakmuran, dan kemajuan bangsa Indonesia.
+                    </p>
+                    <div class="flex space-x-3 text-gray-400">
+                        <a href="#" class="w-8 h-8 rounded-full bg-garcia-navyLight flex items-center justify-center hover:text-garcia-gold hover:border hover:border-garcia-gold transition-all"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-garcia-navyLight flex items-center justify-center hover:text-garcia-gold hover:border hover:border-garcia-gold transition-all"><i class="fa-brands fa-x-twitter text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-garcia-navyLight flex items-center justify-center hover:text-garcia-gold hover:border hover:border-garcia-gold transition-all"><i class="fa-brands fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-garcia-navyLight flex items-center justify-center hover:text-garcia-gold hover:border hover:border-garcia-gold transition-all"><i class="fa-brands fa-youtube text-xs"></i></a>
+                    </div>
+                </div>
+
+                <!-- Navigasi -->
+                <div>
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-4 border-b border-garcia-gold/30 pb-2 inline-block">Menu Navigasi</h5>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#beranda" class="hover:text-garcia-gold transition-colors">Beranda Utama</a></li>
+                        <li><a href="#profil" class="hover:text-garcia-gold transition-colors">Sambutan Ketum Dr. Borman Garcia</a></li>
+                        <li><a href="#visimisi" class="hover:text-garcia-gold transition-colors">Visi & Misi GARMA</a></li>
+                        <li><a href="#pengurus" class="hover:text-garcia-gold transition-colors">Struktur Pengurus Pusat & Daerah</a></li>
+                        <li><a href="#berita" class="hover:text-garcia-gold transition-colors">Berita Terkini</a></li>
+                    </ul>
+                </div>
+
+                <!-- Layanan Kader -->
+                <div>
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-4 border-b border-garcia-gold/30 pb-2 inline-block">Layanan Digital</h5>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#kta" class="hover:text-garcia-gold transition-colors">Pendaftaran KTA Digital</a></li>
+                        <li><a href="#aspirasi" class="hover:text-garcia-gold transition-colors">Portal Aspirasi Rakyat</a></li>
+                        <li><a href="#" class="hover:text-garcia-gold transition-colors">Cek Status Keanggotaan</a></li>
+                        <li><a href="#" class="hover:text-garcia-gold transition-colors">Unduh AD/ART GARMA</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak DPP -->
+                <div>
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-4 border-b border-garcia-gold/30 pb-2 inline-block">Sekretariat DPP</h5>
+                    <ul class="space-y-3 text-xs text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-garcia-gold mt-1"></i>
+                            <span>Gedung DPP Garcia Maju, Jl. Jendral Sudirman No. 88, Jakarta Selatan 12190</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-garcia-gold"></i>
+                            <span>(021) 555-8899 / 0811-2233-4455</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-garcia-gold"></i>
+                            <span>sekretariat@garciamaju.or.id</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-white/10 text-center text-xs text-gray-400">
+                <p>&copy; 2026 Partai Garcia Maju (GARMA). Hak Cipta Dilindungi Undang-Undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Detail Berita -->
+    <div id="berita-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-garcia-navyLight border border-garcia-gold/40 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 relative text-gray-200">
+            <button onclick="closeBeritaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="berita-modal-content">
+                <!-- Content injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Struktur Pengurus
+        const pengurusData = {
+            dpp: [
+                { nama: "Dr. Borman Garcia", jabatan: "Ketua Umum DPP GARMA", foto: "watermarked_img_1688744384258948971.jpg" },
+                { nama: "Siti Rahmawati, S.H., M.H.", jabatan: "Sekretaris Jenderal", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop" },
+                { nama: "H. Hendra Wijaya, S.E.", jabatan: "Bendahara Umum", foto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&auto=format&fit=crop" },
+                { nama: "Maya Indah, M.I.Kom.", jabatan: "Kabid Media & Digital", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop" }
+            ],
+            dpd: [
+                { nama: "Ir. Bambang Sugianto", jabatan: "Ketua DPD Jawa Barat", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop" },
+                { nama: "Dewi Lestari, S.Pd.", jabatan: "Ketua DPD Jawa Tengah", foto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop" },
+                { nama: "Ahmad Zulkarnaen", jabatan: "Ketua DPD DKI Jakarta", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop" },
+                { nama: "Gede Sukarta, S.T.", jabatan: "Ketua DPD Bali", foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop" }
+            ],
+            dpc: [
+                { nama: "Rahmat Hidayat", jabatan: "Ketua DPC Kota Bandung", foto: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=300&auto=format&fit=crop" },
+                { nama: "Rina Kartika", jabatan: "Ketua DPC Kab. Bogor", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop" },
+                { nama: "Taufik Hidayatullah", jabatan: "Ketua DPC Kota Surabaya", foto: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&auto=format&fit=crop" },
+                { nama: "Nurul Aini", jabatan: "Ketua DPC Medan", foto: "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=300&auto=format&fit=crop" }
+            ]
+        };
+
+        // Data Berita & Kegiatan
+        const beritaData = [
+            {
+                id: 1,
+                judul: "Ketum Dr. Borman Garcia Buka Konsolidasi Akbar GARMA 2026",
+                tanggal: "06 Oktober 2026",
+                kategori: "Nasional",
+                gambar: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?q=80&w=600&auto=format&fit=crop",
+                ringkasan: "Ketua Umum Dr. Borman Garcia menegaskan kesiapan seluruh pengurus daerah dalam memenangkan aspirasi rakyat.",
+                isi: "Dalam pidato pembukaannya, Dr. Borman Garcia menginstruksikan seluruh kader Partai Garcia Maju di 38 provinsi untuk terjun langsung menyerap dan memperjuangkan keluhan warga, khususnya terkait akses pupuk murah dan beasiswa pendidikan."
+            },
+            {
+                id: 2,
+                judul: "Peluncuran Program Klinik Keliling Gratis Oleh Dr. Borman Garcia",
+                tanggal: "02 Oktober 2026",
+                kategori: "Kesehatan",
+                gambar: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop",
+                ringkasan: "DPP Partai Garcia Maju meresmikan 50 unit armada medis bergerak untuk pelosok desa.",
+                isi: "Program unggulan kepemimpinan Dr. Borman Garcia ini hadir untuk menjangkau masyarakat yang kesulitan mendapatkan layanan medis dasar secara memadai. Setiap armada dilengkapi tenaga medis profesional dan obat-obatan gratis."
+            },
+            {
+                id: 3,
+                judul: "GARMA Usulkan RUU Digital Ekonomi Untuk Lindungi UMKM",
+                tanggal: "28 September 2026",
+                kategori: "Ekonomi",
+                gambar: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop",
+                ringkasan: "Fraksi GARMA dorong percepatan digitalisasi pasar tradisional di seluruh Indonesia.",
+                isi: "Partai Garcia Maju secara resmi mengajukan draf undang-undang insentif digital bagi para pelaku pasar tradisional agar mampu bersaing secara sehat di tengah pesatnya e-commerce nasional."
+            }
+        ];
+
+        // Data Aspirasi Realtime Feed
+        let aspirasiList = [
+            { nama: "Hendra Wijaya", kategori: "Infrastruktur & Jalan", pesan: "Mohon perbaikan jalan utama di Sukabumi Selatan yang rusak parah.", tanggal: "Baru saja" },
+            { nama: "Siti Maryam", kategori: "Pendidikan & Sekolah", pesan: "Harap diadakan bantuan laptop gratis untuk sekolah dasar di desa pelosok.", tanggal: "1 jam lalu" },
+            { nama: "Budi Santoso", kategori: "Ekonomi & Pasar", pesan: "Pak Ketum Dr. Borman Garcia, mohon kawal stabilitas harga pupuk tani.", tanggal: "3 jam lalu" }
+        ];
+
+        // Mobile Nav Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Filter Pengurus Function
+        function filterPengurus(tingkat) {
+            document.querySelectorAll('.pengurus-tab').forEach(tab => {
+                tab.classList.remove('gold-gradient-bg', 'text-garcia-navy');
+                tab.classList.add('text-gray-300');
+            });
+
+            const activeTab = document.getElementById(`tab-${tingkat}`);
+            activeTab.classList.add('gold-gradient-bg', 'text-garcia-navy');
+            activeTab.classList.remove('text-gray-300');
+
+            const container = document.getElementById('pengurus-grid');
+            container.innerHTML = '';
+
+            pengurusData[tingkat].forEach(p => {
+                const isKetum = p.nama.includes("Dr. Borman Garcia");
+                const card = `
+                    <div class="bg-garcia-navy p-6 rounded-2xl border ${isKetum ? 'border-2 border-garcia-gold shadow-xl shadow-garcia-gold/10' : 'border-white/10 hover:border-garcia-gold'} text-center transition-all duration-300 group">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-garcia-gold p-1">
+                            <img src="${p.foto}" alt="${p.nama}" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-bold text-white text-base mb-1">${p.nama}</h4>
+                        <p class="text-xs text-garcia-gold font-semibold uppercase tracking-wider">${p.jabatan}</p>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Render Berita Function
+        function renderBerita(items = beritaData) {
+            const container = document.getElementById('berita-grid');
+            container.innerHTML = '';
+
+            items.forEach(b => {
+                const card = `
+                    <div class="bg-garcia-navyLight rounded-2xl border border-white/10 hover:border-garcia-gold overflow-hidden transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="h-44 overflow-hidden relative">
+                                <img src="${b.gambar}" alt="${b.judul}" class="w-full h-full object-cover">
+                                <span class="absolute top-3 right-3 bg-garcia-navy/80 text-garcia-gold px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">${b.kategori}</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-[10px] text-gray-400 block mb-2"><i class="fa-regular fa-calendar mr-1"></i> ${b.tanggal}</span>
+                                <h4 class="font-bold text-base text-white mb-3 hover:text-garcia-gold transition-colors leading-snug">${b.judul}</h4>
+                                <p class="text-xs text-gray-300 leading-relaxed">${b.ringkasan}</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="openBeritaModal(${b.id})" class="text-xs font-bold text-garcia-gold hover:underline flex items-center gap-1">
+                                Baca Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        function filterBerita() {
+            const query = document.getElementById('news-search').value.toLowerCase();
+            const filtered = beritaData.filter(b => b.judul.toLowerCase().includes(query) || b.ringkasan.toLowerCase().includes(query));
+            renderBerita(filtered);
+        }
+
+        function openBeritaModal(id) {
+            const berita = beritaData.find(b => b.id === id);
+            if (!berita) return;
+
+            const modalContent = document.getElementById('berita-modal-content');
+            modalContent.innerHTML = `
+                <span class="inline-block bg-garcia-gold/20 text-garcia-gold px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">${berita.kategori}</span>
+                <h3 class="text-2xl font-bold font-serif text-white mb-2 leading-snug">${berita.judul}</h3>
+                <p class="text-xs text-gray-400 mb-6"><i class="fa-regular fa-calendar mr-1"></i> Dipublikasikan: ${berita.tanggal}</p>
+                <img src="${berita.gambar}" alt="${berita.judul}" class="w-full h-60 object-cover rounded-2xl mb-6 border border-garcia-gold/20">
+                <p class="text-sm text-gray-300 leading-relaxed">${berita.isi}</p>
+            `;
+            document.getElementById('berita-modal').classList.remove('hidden');
+            document.getElementById('berita-modal').classList.add('flex');
+        }
+
+        function closeBeritaModal() {
+            document.getElementById('berita-modal').classList.add('hidden');
+            document.getElementById('berita-modal').classList.remove('flex');
+        }
+
+        // Live KTA Preview Updater
+        function updateKtaPreview() {
+            const nama = document.getElementById('input-nama').value || 'BUDI SANTOSO';
+            const nik = document.getElementById('input-nik').value || '3201010101000001';
+            const provinsi = document.getElementById('input-provinsi').value || 'DKI JAKARTA';
+
+            document.getElementById('kta-preview-nama').innerText = nama.toUpperCase();
+            document.getElementById('kta-preview-id').innerText = `GARMA-${nik}`;
+            document.getElementById('kta-preview-wilayah').innerText = provinsi.toUpperCase();
+        }
+
+        function handleFotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('kta-preview-foto').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleKtaSubmit(e) {
+            e.preventDefault();
+            const nama = document.getElementById('input-nama').value;
+            showToast(`Selamat! KTA Digital GARMA atas nama ${nama} berhasil diterbitkan.`);
+        }
+
+        function printKtaCard() {
+            window.print();
+        }
+
+        // Render Feed Aspirasi
+        function renderAspirasi() {
+            const container = document.getElementById('aspirasi-list');
+            container.innerHTML = '';
+
+            aspirasiList.forEach(a => {
+                const item = `
+                    <div class="bg-garcia-navy p-4 rounded-2xl border border-white/5 hover:border-garcia-gold/30 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-full gold-gradient-bg flex items-center justify-center text-xs font-bold text-garcia-navy">
+                                    ${a.nama.charAt(0)}
+                                </div>
+                                <div>
+                                    <h5 class="text-xs font-bold text-white">${a.nama}</h5>
+                                    <span class="text-[9px] text-garcia-gold uppercase tracking-wider">${a.kategori}</span>
+                                </div>
+                            </div>
+                            <span class="text-[10px] text-gray-400">${a.tanggal}</span>
+                        </div>
+                        <p class="text-xs text-gray-300 leading-relaxed">${a.pesan}</p>
+                    </div>
+                `;
+                container.innerHTML += item;
+            });
+        }
+
+        function handleAspirasiSubmit(e) {
+            e.preventDefault();
+            const nama = document.getElementById('asp-nama').value;
+            const kategori = document.getElementById('asp-kategori').value;
+            const pesan = document.getElementById('asp-pesan').value;
+
+            aspirasiList.unshift({
+                nama: nama,
+                kategori: kategori,
+                pesan: pesan,
+                tanggal: "Baru saja"
+            });
+
+            renderAspirasi();
+            document.getElementById('form-aspirasi').reset();
+            showToast("Aspirasi Anda berhasil terikirim ke Portal Sekretariat GARMA!");
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "pointer-events-auto bg-garcia-navyLight border-2 border-garcia-gold text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-3 transform transition-all duration-300 translate-y-5 opacity-0";
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check text-garcia-gold text-xl"></i>
+                <div class="text-xs font-semibold leading-tight">${message}</div>
+            `;
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-5', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-5');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // App Initialization
+        window.onload = function() {
+            filterPengurus('dpp');
+            renderBerita();
+            renderAspirasi();
+
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            document.getElementById('kta-preview-tanggal').innerText = dateStr;
+        };
+    </script>
+</body>
+</html>
